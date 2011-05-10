@@ -1,0 +1,6 @@
+; $Id$
+name = User Communications
+description = Adds e-mail functionality for e-mail users with different levels of profile completeness.
+dependencies[] = token
+package = NoJoShmo
+core = 6.x
