@@ -7,7 +7,7 @@ function user_coms_menu() {
 		'page callback' => 'user_coms_no_profile_pic_page',
     //'page arguments' => array('profile_tmp_access_form', 2),
 		//'access arguments' => TRUE,
-    'access callback' => TRUE;
+    'access callback' => TRUE,
 		'type' => MENU_NORMAL_ITEM,
 	);
 	
