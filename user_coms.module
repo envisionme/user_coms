@@ -44,7 +44,7 @@ function user_coms_menu() {
 */
 function user_coms_no_profile_pic_page($aid) {
   $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid");
-  print_r(db_fetch_object($result));
+  print_r(db_fetch_object($result)->field_profile_image_fid);
 	$output = 'No Profile Pic Page';
 	return $output;
 }
