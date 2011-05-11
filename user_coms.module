@@ -50,7 +50,7 @@ function user_coms_no_profile_pic_page($aid) {
     else
       $output .= '****';
   }
-	$output = 'No Profile Pic Page';
+	//$output = 'No Profile Pic Page';
 	return $output;
 }
 
