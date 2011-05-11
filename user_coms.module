@@ -44,11 +44,11 @@ function user_coms_menu() {
 */
 function user_coms_no_profile_pic_page($aid) {
   $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_fid IS NULL");
-  while($object = db_fetch_object($result)) {  
-      $output .= 'test';
-  }
+  //while($object = db_fetch_object($result)) {  
+  //    $output .= 'test';
+  //}
 	//$output = 'No Profile Pic Page';
-	return $output;
+	return $output.'1212';
 }
 
 function user_coms_pic_but_profile_incomplete_page($aid) {
