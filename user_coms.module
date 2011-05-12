@@ -62,7 +62,7 @@ function user_coms_menu() {
   $items['user_coms/completed_profile_but_no_profile_video_email'] = array(
 		'title' => 'E-mail users - No Profile Picture',
 		'page callback' => 'drupal_get_form',
-		'page arguments' => array('user_coms_no_profile_pic_email_form'),
+		'page arguments' => array('user_coms_no_profile_vid_email_form'),
 		'access callback' => TRUE,
 		'type' => MENU_NORMAL_ITEM,
 	);
@@ -148,6 +148,37 @@ function user_coms_no_profile_pic_email_form(&$form_state, $uid) {
 }
 
 function user_coms_profile_incomplete_email_form(&$form_state, $uid) {
+
+	$form['#tree'] = TRUE;
+	
+	$form['email_body'] = array(
+		'#type'   => 'textarea',
+    '#rows'   => '7',
+		'#title'  => t('E-mail body'),
+    '#default_value' => variable_get('email_body'),
+	);
+
+  if (module_exists('token')) {
+    $form['email_tokens']['token_help'] = array(
+      '#title' => t('Replacement patterns'),
+      '#type' => 'fieldset',
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+    );
+    $form['email_tokens']['token_help']['help'] = array(
+      '#value' => theme('token_help', 'node'),
+    );
+	}
+
+	$form['submit'] = array(
+		'#type'   => 'submit',
+		'#value'  => t('Submit'),
+	);
+
+	return $form;
+}
+
+function user_coms_no_profile_vid_email_form(&$form_state, $uid) {
 
 	$form['#tree'] = TRUE;
 	
