@@ -1,6 +1,16 @@
 <?php
 
 /**
+ * Implementation of hook_help()
+ */
+function user_coms_help($path, $args) {
+  if ($path == 'admin/help#user_coms') {
+    $output = '<p>Module to enabled admins to filter users who completed their user profiles to different completeness levels and send the e-mail messages to encourage them to complete their profiles.</p>';
+    return $output;
+  }
+}
+
+/**
 * Implementation of hook_menu
 **/
 function user_coms_menu() {
@@ -114,7 +124,7 @@ function user_coms_email_form(&$form_state, $uid) {
 		'#type'   => 'textarea',
     '#rows'   => '7',
 		'#title'  => t('E-mail body'),
-    '#default_value' => variable_get('request_email'),
+    '#default_value' => variable_get('email_body'),
 	);
 
 	$form['submit'] = array(
