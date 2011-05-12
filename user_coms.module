@@ -33,7 +33,7 @@ function user_coms_menu() {
 		'type' => MENU_NORMAL_ITEM,
 	);
 
-  $items['user_coms/no_profile_pic'] = array(
+  $items['user_coms/no_profile_pic_email'] = array(
 		'title' => 'E-mail users - No Profile Picture',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_form'),
@@ -41,7 +41,7 @@ function user_coms_menu() {
 		'type' => MENU_NORMAL_ITEM,
 	);
 
-  $items['user_coms/pic_but_profile_incomplete'] = array(
+  $items['user_coms/pic_but_profile_incomplete_email'] = array(
 		'title' => 'E-mail users - No Profile Picture',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_form'),
@@ -49,7 +49,7 @@ function user_coms_menu() {
 		'type' => MENU_NORMAL_ITEM,
 	);
 
-  $items['user_coms/completed_profile_but_no_profile_video'] = array(
+  $items['user_coms/completed_profile_but_no_profile_video_email'] = array(
 		'title' => 'E-mail users - No Profile Picture',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_form'),
@@ -57,7 +57,7 @@ function user_coms_menu() {
 		'type' => MENU_NORMAL_ITEM,
 	);
 
-  $items['user_coms/no_profile_pic'] = array(
+  $items['user_coms/no_profile_pic_email'] = array(
 		'title' => 'E-mail users - No Profile Picture',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_form'),
