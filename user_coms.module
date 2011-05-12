@@ -185,10 +185,11 @@ function user_coms_mail($key, &$message, $params) {
       //Run the query to get the e-mail addresses to send to
       $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
       while($object = db_fetch_object($result)) {
-        $addresses[] = user_load($object->uid)->mail; 
+        //$addresses[] = user_load($object->uid)->mail;
+        $body_string .= user_load($object->uid)->mail; 
       } 
       $message['subject'] = t('NoJoShmo User Coms');
-      $body_string = 'You dont have a profile picture';
+      //$body_string = 'You dont have a profile picture';
       $message['body'][] = $body_string;
       break;
     case 'profile_incomplete':
