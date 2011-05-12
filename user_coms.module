@@ -57,7 +57,7 @@ function user_coms_pic_but_profile_incomplete_page($aid) {
 }
 
 function user_coms_completed_profile_but_no_profile_video_page($aid) {
-	$result = db_query("SELECT * FROM {flag_content} INNER JOIN {node} ON {flag_content}.nid = {node}.nid WHERE {flag_content}.nid = 5");  
+	$result = db_query("SELECT * FROM {flag_content} INNER JOIN {node} ON {flag_content}.nid = {node}.nid WHERE {flag_content}.fid = 5");  
   while($object = db_fetch_object($result)) {
       $user_ids[] = $object->uid;  
       $output .= $object->uid.'<br />';
