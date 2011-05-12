@@ -152,6 +152,7 @@ function user_coms_email_body_form(&$form_state, $uid) {
 */
 function user_coms_email_body_form_submit($form_id, $form_values) {
   print_r(arg(0).' '.arg(1).' '.arg(2));
+  break;
   drupal_set_message(t('E-mail sent to selected users.'));
 	drupal_goto('user');
 }
