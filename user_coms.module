@@ -152,7 +152,7 @@ function user_coms_email_body_form(&$form_state, $uid) {
 */
 function user_coms_email_body_form_submit($form_id, $form_values) {
   drupal_set_message(t('Simple form submit test'));
-	drupal_goto('http://dev.nojoshmo.com');
+	drupal_goto('user');
 }
 
 /**
