@@ -109,7 +109,11 @@ function user_coms_completed_profile_but_no_profile_video_page($aid) {
 }
 
 function user_coms_no_showcase_items_page($aid) {
-	$output = 'No Showcase Items Page';
+	$result = db_query("SELECT * FROM {flag_content} INNER JOIN {node} ON {flag_content}.content_id = {node}.nid WHERE {flag_content}.fid = 5");  
+  while($object = db_fetch_object($result)) {
+      $user_ids[] = $object->uid;  
+      $output .= $object->uid.'<br />';
+  }
 	return $output;
 }
 
@@ -178,21 +182,41 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
 function user_coms_mail($key, &$message, $params) {
 	switch($key) {
 		case 'no_profile_pic':
+      //Run the query to get the e-mail addresses to send to
+      $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
+      while($object = db_fetch_object($result)) {
+        //Get address  
+      } 
       $message['subject'] = t('NoJoShmo User Coms');
       $body_string = 'You dont have a profile picture';
       $message['body'][] = $body_string;
       break;
     case 'profile_incomplete':
+      //Run the query to get the e-mail addresses to send to
+      $result = db_query("SELECT * FROM {content_complete} INNER JOIN {node} ON {content_complete}.nid = {node}.nid WHERE {content_complete}.completeness < 50");  
+      while($object = db_fetch_object($result)) {
+        //Get address
+      }
       $message['subject'] = t('NoJoShmo User Coms');
       $body_string = 'Your profile is incomplete';
       $message['body'][] = $body_string;
       break;
     case 'no_profile_video':
+      //Run the query to get the e-mail addresses to send to
+      $result = db_query("SELECT * FROM {flag_content} INNER JOIN {node} ON {flag_content}.content_id = {node}.nid WHERE {flag_content}.fid = 5");  
+      while($object = db_fetch_object($result)) {
+       //Get address
+      }
       $message['subject'] = t('NoJoShmo User Coms');
       $body_string = 'You dont have a profile video';
       $message['body'][] = $body_string;
       break;
     case 'no_showcase':
+      //Run the query to get the e-mail addresses to send to
+      $result = db_query("SELECT * FROM {flag_content} INNER JOIN {node} ON {flag_content}.content_id = {node}.nid WHERE {flag_content}.fid = 5");  
+      while($object = db_fetch_object($result)) {
+        //Get address
+      }
       $message['subject'] = t('NoJoShmo User Coms');
       $body_string = 'You dont have any showcase items';
       $message['body'][] = $body_string;
