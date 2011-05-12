@@ -147,6 +147,13 @@ function user_coms_email_body_form(&$form_state, $uid) {
 	return $form;
 }
 
+/**
+* Form submit callback function
+*/
+function user_coms_email_body_form_submit($form_id, $form_values) {
+  drupal_set_message(t('Simple form submit test'));
+	drupal_goto('http://dev.nojoshmo.com');
+}
 
 /**
 * Implementation of hook_mail
