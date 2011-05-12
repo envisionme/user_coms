@@ -131,6 +131,20 @@ function user_coms_email_form(&$form_state, $uid) {
 		'#type'   => 'submit',
 		'#value'  => t('Submit'),
 	);
+
+  if (module_exists('token')) {
+    $form['email_tokens']['token_help'] = array(
+      '#title' => t('Replacement patterns'),
+      '#type' => 'fieldset',
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+      //'#description' => t('Prefer raw-text replacements for text to avoid problems with HTML entities!'),
+    );
+    $form['email_tokens']['token_help']['help'] = array(
+      '#value' => theme('token_help', 'node'),
+    );
+	}
+
 	return $form;
 }
 
