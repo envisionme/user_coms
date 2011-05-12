@@ -67,7 +67,7 @@ function user_coms_menu() {
 		'type' => MENU_NORMAL_ITEM,
 	);
 
-  $items['user_coms/no_profile_pic_email'] = array(
+  $items['user_coms/no_showcase_email'] = array(
 		'title' => 'E-mail users - No Profile Picture',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_body_form'),
@@ -151,9 +151,19 @@ function user_coms_email_body_form(&$form_state, $uid) {
 * Form submit callback function
 */
 function user_coms_email_body_form_submit($form_id, $form_values) {
-  print_r(arg(0).' '.arg(1).' '.arg(2));
-  break;
-  drupal_set_message(t('E-mail sent to selected users.'));
+  switch(arg(1)) {
+		case 'no_profile_pic_email':
+      drupal_set_message(t('E-mail sent to those without a profile picture'));
+      break;
+    case 'pic_but_profile_incomplete_email':
+      drupal_set_message(t('E-mail sent to those whos profiles are incomplete'));
+      break;
+    case 'completed_profile_but_no_profile_video_email':
+      drupal_set_message(t('E-mail sent to those who dont have profile videos'));
+      break;
+    case 'no_showcase_email':
+      drupal_set_message(t('E-mail sent to those without showcase items'));
+      break
 	drupal_goto('user');
 }
 
