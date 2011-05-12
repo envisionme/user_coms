@@ -127,11 +127,6 @@ function user_coms_email_form(&$form_state, $uid) {
     '#default_value' => variable_get('email_body'),
 	);
 
-	$form['submit'] = array(
-		'#type'   => 'submit',
-		'#value'  => t('Submit'),
-	);
-
   if (module_exists('token')) {
     $form['email_tokens']['token_help'] = array(
       '#title' => t('Replacement patterns'),
@@ -144,6 +139,11 @@ function user_coms_email_form(&$form_state, $uid) {
       '#value' => theme('token_help', 'node'),
     );
 	}
+
+	$form['submit'] = array(
+		'#type'   => 'submit',
+		'#value'  => t('Submit'),
+	);
 
 	return $form;
 }
