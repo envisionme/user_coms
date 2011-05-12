@@ -68,7 +68,7 @@ function user_coms_menu() {
 	);
 
   $items['user_coms/no_showcase_email'] = array(
-		'title' => 'E-mail users - No Profile Picture',
+		'title' => 'E-mail users - No Showcase Email',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_body_form'),
 		'access callback' => TRUE,
@@ -154,6 +154,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
   switch(arg(1)) {
 		case 'no_profile_pic_email':
       drupal_set_message(t('E-mail sent to those without a profile picture'));
+      drupal_mail('user_coms', 'no_profile_pic', 'williecoetzee@gmail.com', language_default(), $params);
       break;
     case 'pic_but_profile_incomplete_email':
       drupal_set_message(t('E-mail sent to those whos profiles are incomplete'));
@@ -171,6 +172,12 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
 /**
 * Implementation of hook_mail
 */
-//function user_coms_mail($key, &$message, $params) {
-	
-//}
+function user_coms_mail($key, &$message, $params) {
+	switch($key) {
+		case 'no_profile_pic':
+      $message['subject'] = t('NoJoShmo User Coms');
+      $body_string = 'You dont have a profile picture';
+      $message['body'][] = $body_string;
+      break;
+  }
+}
