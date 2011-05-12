@@ -153,16 +153,19 @@ function user_coms_email_body_form(&$form_state, $uid) {
 function user_coms_email_body_form_submit($form_id, $form_values) {
   switch(arg(1)) {
 		case 'no_profile_pic_email':
-      drupal_set_message(t('E-mail sent to those without a profile picture'));
       drupal_mail('user_coms', 'no_profile_pic', 'williecoetzee@gmail.com', language_default(), $params);
+      drupal_set_message(t('E-mail sent to those without a profile picture'));
       break;
     case 'pic_but_profile_incomplete_email':
+      drupal_mail('user_coms', 'profile_incomplete', 'williecoetzee@gmail.com', language_default(), $params);
       drupal_set_message(t('E-mail sent to those whos profiles are incomplete'));
       break;
     case 'completed_profile_but_no_profile_video_email':
+      drupal_mail('user_coms', 'no_profile_video', 'williecoetzee@gmail.com', language_default(), $params);
       drupal_set_message(t('E-mail sent to those who dont have profile videos'));
       break;
     case 'no_showcase_email':
+      drupal_mail('user_coms', 'no_showcase', 'williecoetzee@gmail.com', language_default(), $params);
       drupal_set_message(t('E-mail sent to those without showcase items'));
       break;
   }
