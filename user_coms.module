@@ -157,6 +157,11 @@ function user_coms_email_body_form(&$form_state, $uid) {
 function user_coms_email_body_form_submit($form_id, $form_values) {
   switch(arg(1)) {
 		case 'no_profile_pic_email':
+      //Run the query to get the e-mail addresses to send to
+      $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
+      while($object = db_fetch_object($result)) {
+        $addresses .= user_load($object->uid)->mail.', '; 
+      } 
       drupal_mail('user_coms', 'no_profile_pic', 'williecoetzee@gmail.com', language_default(), $params);
       drupal_set_message(t('E-mail sent to those without a profile picture'));
       break;
@@ -182,14 +187,8 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
 function user_coms_mail($key, &$message, $params) {
 	switch($key) {
 		case 'no_profile_pic':
-      //Run the query to get the e-mail addresses to send to
-      $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
-      while($object = db_fetch_object($result)) {
-        //$addresses[] = user_load($object->uid)->mail;
-        $body_string .= user_load($object->uid)->mail; 
-      } 
       $message['subject'] = t('NoJoShmo User Coms');
-      //$body_string = 'You dont have a profile picture';
+      $body_string = 'You dont have a profile picture';
       $message['body'][] = $body_string;
       break;
     case 'profile_incomplete':
