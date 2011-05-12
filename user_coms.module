@@ -1,12 +1,13 @@
 <?php
 
+/**
+* Implementation of hook_menu
+**/
 function user_coms_menu() {
 	$items = array();
   $items['user_coms/no_profile_pic'] = array(
 		'title' => 'List Users - No Profile Picture',
 		'page callback' => 'user_coms_no_profile_pic_page',
-    //'page arguments' => array('profile_tmp_access_form', 2),
-		//'access arguments' => TRUE,
     'access callback' => TRUE,
 		'type' => MENU_NORMAL_ITEM,
 	);
@@ -14,26 +15,21 @@ function user_coms_menu() {
 	$items['user_coms/pic_but_profile_incomplete'] = array(
 		'title' => 'List Users - Profile Incomplete',
 		'page callback' => 'user_coms_pic_but_profile_incomplete_page',
-		//'page arguments' => array(2),
-		//'access callback' => '_profile_tmp_access_approve_access',
-		'access arguments' => TRUE,
+		'access callback' => TRUE,
 		'type' => MENU_NORMAL_ITEM,
 	);
 
 	$items['user_coms/completed_profile_but_no_profile_video'] = array(
 		'title' => 'List Users - No Profile Video',
 		'page callback' => 'user_coms_completed_profile_but_no_profile_video_page',
-		//'page arguments' => array(2),
-		//'access callback' => '_profile_tmp_access_revoke_access',
-		'access arguments' => TRUE,
+		'access callback' => TRUE,
 		'type' => MENU_NORMAL_ITEM,
 	);
 
 	$items['user_coms/no_showcase_items'] = array(
 		'title' => 'List Users - No Showcase Items',
 		'page callback' => 'user_coms_no_showcase_items_page',
-		//'page arguments' => array('profile_tmp_access_settings_form'),
-		'access arguments' => TRUE,
+		'access callback' => TRUE,
 		'type' => MENU_NORMAL_ITEM,
 	);
 	return $items;
@@ -48,12 +44,15 @@ function user_coms_no_profile_pic_page($aid) {
       $user_ids[] = $object->uid;  
       $output .= $object->uid.'<br />';
   }
-	//$output = 'No Profile Pic Page';
-	return $output.'1212';
+	return $output;
 }
 
 function user_coms_pic_but_profile_incomplete_page($aid) {
-	$output = 'Profile Incomplete Page';
+	$result = db_query("SELECT * FROM {content_complete} INNER JOIN {node} ON {content_complete}.nid = {node}.nid WHERE {content_complete}.completeness < 50");  
+  while($object = db_fetch_object($result)) {
+      $user_ids[] = $object->uid;  
+      $output .= $object->uid.'<br />';
+  }
 	return $output;
 }
 
