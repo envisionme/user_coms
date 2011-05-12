@@ -70,3 +70,9 @@ function user_coms_no_showcase_items_page($aid) {
 	return $output;
 }
 
+/**
+* Implementation of hook_mail
+*/
+function profile_tmp_access_mail($key, &$message, $params) {
+	
+}
