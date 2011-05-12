@@ -32,6 +32,39 @@ function user_coms_menu() {
 		'access callback' => TRUE,
 		'type' => MENU_NORMAL_ITEM,
 	);
+
+  $items['user_coms/no_profile_pic'] = array(
+		'title' => 'E-mail users - No Profile Picture',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('user_coms_email_form'),
+		'access callback' => TRUE,
+		'type' => MENU_NORMAL_ITEM,
+	);
+
+  $items['user_coms/pic_but_profile_incomplete'] = array(
+		'title' => 'E-mail users - No Profile Picture',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('user_coms_email_form'),
+		'access callback' => TRUE,
+		'type' => MENU_NORMAL_ITEM,
+	);
+
+  $items['user_coms/completed_profile_but_no_profile_video'] = array(
+		'title' => 'E-mail users - No Profile Picture',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('user_coms_email_form'),
+		'access callback' => TRUE,
+		'type' => MENU_NORMAL_ITEM,
+	);
+
+  $items['user_coms/no_profile_pic'] = array(
+		'title' => 'E-mail users - No Profile Picture',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('user_coms_email_form'),
+		'access callback' => TRUE,
+		'type' => MENU_NORMAL_ITEM,
+	);
+
 	return $items;
 }
 
@@ -68,6 +101,25 @@ function user_coms_completed_profile_but_no_profile_video_page($aid) {
 function user_coms_no_showcase_items_page($aid) {
 	$output = 'No Showcase Items Page';
 	return $output;
+}
+
+/**
+ * Implementation of hook_form for capturing e-mail bodies
+*/
+function user_coms_email_form(&$form_state, $uid) {
+
+	$form['#tree'] = TRUE;
+	
+	$form['email_body'] = array(
+		'#type'   => 'textfield',
+		'#title'  => t('E-mail body'),
+	);
+
+	$form['submit'] = array(
+		'#type'   => 'submit',
+		'#value'  => t('Submit'),
+	);
+	return $form;
 }
 
 /**
