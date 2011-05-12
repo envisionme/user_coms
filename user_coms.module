@@ -111,8 +111,10 @@ function user_coms_email_form(&$form_state, $uid) {
 	$form['#tree'] = TRUE;
 	
 	$form['email_body'] = array(
-		'#type'   => 'textfield',
+		'#type'   => 'textarea',
+    '#rows'   => '7';
 		'#title'  => t('E-mail body'),
+    '#default_value' => variable_get('request_email'),
 	);
 
 	$form['submit'] = array(
