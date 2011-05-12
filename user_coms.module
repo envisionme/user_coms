@@ -179,5 +179,21 @@ function user_coms_mail($key, &$message, $params) {
       $body_string = 'You dont have a profile picture';
       $message['body'][] = $body_string;
       break;
+    case 'profile_incomplete':
+      $message['subject'] = t('NoJoShmo User Coms');
+      $body_string = 'Your profile is incomplete';
+      $message['body'][] = $body_string;
+      break;
+    case 'no_profile_video':
+      $message['subject'] = t('NoJoShmo User Coms');
+      $body_string = 'You dont have a profile video';
+      $message['body'][] = $body_string;
+      break;
+    case 'no_showcase':
+      $message['subject'] = t('NoJoShmo User Coms');
+      $body_string = 'You dont have any showcase items';
+      $message['body'][] = $body_string;
+      break;
   }
 }
+
