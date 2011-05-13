@@ -87,6 +87,9 @@ function user_coms_no_profile_pic_page($aid) {
       $user_ids[] = $object->uid;  
       $output .= $object->uid.'<br />';
   }
+
+  $output .= l('user_coms/no_profile_pic_email', 'Send E-mail');
+
 	return $output;
 }
 
@@ -96,6 +99,9 @@ function user_coms_pic_but_profile_incomplete_page($aid) {
       $user_ids[] = $object->uid;  
       $output .= $object->uid.'<br />';
   }
+
+  $output .= l('user_coms/pic_but_profile_incomplete_email', 'Send E-mail');
+
 	return $output;
 }
 
@@ -105,6 +111,9 @@ function user_coms_completed_profile_but_no_profile_video_page($aid) {
       $user_ids[] = $object->uid;  
       $output .= $object->uid.'<br />';
   }
+
+  $output .= l('user_coms/completed_profile_but_no_profile_video_email', 'Send E-mail');
+
 	return $output;
 }
 
@@ -114,6 +123,9 @@ function user_coms_no_showcase_items_page($aid) {
       $user_ids[] = $object->uid;  
       $output .= $object->uid.'<br />';
   }
+
+  $output .= l('user_coms/no_showcase_email', 'Send E-mail');
+
 	return $output;
 }
 
