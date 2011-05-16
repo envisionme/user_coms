@@ -15,6 +15,14 @@ function user_coms_help($path, $args) {
 **/
 function user_coms_menu() {
 	$items = array();
+
+  $items['user_coms/list'] = array(
+    'title' => 'Uncompleted Profiles',
+    'page callback' => 'user_coms_list_page',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+
   $items['user_coms/no_profile_pic'] = array(
 		'title' => 'List Users - No Profile Picture',
 		'page callback' => 'user_coms_no_profile_pic_page',
@@ -131,6 +139,17 @@ function user_coms_no_showcase_items_page($aid) {
   $output .= l('Send E-mail', 'user_coms/no_showcase_email');
 
 	return $output;
+}
+
+function user_coms_list_page($aid) {
+  $output .= '<ul>';
+  $output .= '<li>'.l('No Profile Picture - List Users', 'user_coms/no_showcase_email').'</li>';
+  $output .= '<li>'.l('No Profile Picture - List Users', 'user_coms/no_showcase_email').'</li>';
+  $output .= '<li>'.l('No Profile Picture - List Users', 'user_coms/no_showcase_email').'</li>';
+  $output .= '<li>'.l('No Profile Picture - List Users', 'user_coms/no_showcase_email').'</li>';  
+  $output .= '</ul>';
+  
+  return $output;
 }
 
 /**
