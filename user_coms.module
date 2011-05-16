@@ -30,23 +30,23 @@ function user_coms_menu() {
 		'type' => MENU_NORMAL_ITEM,
 	);
 	
-	$items['user_coms/pic_but_profile_incomplete'] = array(
+	$items['user_coms/profile_incomplete'] = array(
 		'title' => 'List Users - Profile Incomplete',
-		'page callback' => 'user_coms_pic_but_profile_incomplete_page',
+		'page callback' => 'user_coms_profile_incomplete_page',
 		'access callback' => TRUE,
 		'type' => MENU_NORMAL_ITEM,
 	);
 
-	$items['user_coms/completed_profile_but_no_profile_video'] = array(
+	$items['user_coms/no_profile_video'] = array(
 		'title' => 'List Users - No Profile Video',
-		'page callback' => 'user_coms_completed_profile_but_no_profile_video_page',
+		'page callback' => 'user_coms_no_profile_video_page',
 		'access callback' => TRUE,
 		'type' => MENU_NORMAL_ITEM,
 	);
 
-	$items['user_coms/no_showcase_items'] = array(
+	$items['user_coms/no_showcase'] = array(
 		'title' => 'List Users - No Showcase Items',
-		'page callback' => 'user_coms_no_showcase_items_page',
+		'page callback' => 'user_coms_no_showcase_page',
 		'access callback' => TRUE,
 		'type' => MENU_NORMAL_ITEM,
 	);
@@ -59,7 +59,7 @@ function user_coms_menu() {
 		'type' => MENU_NORMAL_ITEM,
 	);
 
-  $items['user_coms/pic_but_profile_incomplete_email'] = array(
+  $items['user_coms/profile_incomplete_email'] = array(
 		'title' => 'E-mail users - No Profile Picture',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_body_form'),
@@ -67,7 +67,7 @@ function user_coms_menu() {
 		'type' => MENU_NORMAL_ITEM,
 	);
 
-  $items['user_coms/completed_profile_but_no_profile_video_email'] = array(
+  $items['user_coms/no_profile_video_email'] = array(
 		'title' => 'E-mail users - No Profile Picture',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_body_form'),
@@ -102,8 +102,8 @@ function user_coms_no_profile_pic_page($aid) {
 	return $output;
 }
 
-function user_coms_pic_but_profile_incomplete_page($aid) {
-  $output .= l('Send E-mail', 'user_coms/pic_but_profile_incomplete_email');
+function user_coms_profile_incomplete_page($aid) {
+  $output .= l('Send E-mail', 'user_coms/profile_incomplete_email');
 	$result = db_query("SELECT * FROM {content_complete} INNER JOIN {node} ON {content_complete}.nid = {node}.nid WHERE {content_complete}.completeness < 50");  
   while($object = db_fetch_object($result)) {
       $user_ids[] = $object->uid;  
@@ -115,8 +115,8 @@ function user_coms_pic_but_profile_incomplete_page($aid) {
 	return $output;
 }
 
-function user_coms_completed_profile_but_no_profile_video_page($aid) {
-  $output .= l('Send E-mail', 'user_coms/completed_profile_but_no_profile_video_email');
+function user_coms_no_profile_video_page($aid) {
+  $output .= l('Send E-mail', 'user_coms/no_profile_video_email');
 	$result = db_query("SELECT * FROM {flag_content} INNER JOIN {node} ON {flag_content}.content_id = {node}.nid WHERE {flag_content}.fid = 5");  
   while($object = db_fetch_object($result)) {
       $user_ids[] = $object->uid;  
@@ -128,7 +128,7 @@ function user_coms_completed_profile_but_no_profile_video_page($aid) {
 	return $output;
 }
 
-function user_coms_no_showcase_items_page($aid) {
+function user_coms_no_showcase_page($aid) {
   $output .= l('Send E-mail', 'user_coms/no_showcase_email');
 	$result = db_query("SELECT * FROM {flag_content} INNER JOIN {node} ON {flag_content}.content_id = {node}.nid WHERE {flag_content}.fid = 5");  
   while($object = db_fetch_object($result)) {
