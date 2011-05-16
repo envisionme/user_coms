@@ -143,10 +143,10 @@ function user_coms_no_showcase_page($aid) {
 
 function user_coms_list_page($aid) {
   $output .= '<ul>';
-  $output .= '<li>'.l('List Users - No Profile Picture', 'user_coms/no_showcase_email').'</li>';
-  $output .= '<li>'.l('List Users - Profile Fields Incomplete', 'user_coms/no_showcase_email').'</li>';
-  $output .= '<li>'.l('List Users - No Profile Video', 'user_coms/no_showcase_email').'</li>';
-  $output .= '<li>'.l('List Users - No Showcase Items', 'user_coms/no_showcase_email').'</li>';  
+  $output .= '<li>'.l('List Users - No Profile Picture', 'user_coms/no_profile_pic').'</li>';
+  $output .= '<li>'.l('List Users - Profile Fields Incomplete', 'user_coms/profile_incomplete').'</li>';
+  $output .= '<li>'.l('List Users - No Profile Video', 'user_coms/no_profile_video').'</li>';
+  $output .= '<li>'.l('List Users - No Showcase Items', 'user_coms/no_showcase').'</li>';  
   $output .= '</ul>';
   
   return $output;
