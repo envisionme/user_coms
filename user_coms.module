@@ -179,17 +179,17 @@ function user_coms_settings_form() {
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_no_profile_pic'),
   );*/
-  $form['user_coms_default_profile_incomplete'] = array(
-                '#type' => 'textarea',
-                '#title' => 'Default e-mail body for users who haven\'t completed their profiles',
-                '#rows' => '5',
-                '#default_value' => variable_get('user_coms_default_profile_incomplete'),
-  );
   $form['user_coms_default_profile_incomplete1'] = array(
                 '#type' => 'textarea',
                 '#title' => 'Default e-mail body for users who haven\'t completed their profiles',
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_profile_incomplete1'),
+  );
+  $form['user_coms_default_profile_incomplete'] = array(
+                '#type' => 'textarea',
+                '#title' => 'Default e-mail body for users who haven\'t completed their profiles',
+                '#rows' => '5',
+                '#default_value' => variable_get('user_coms_default_profile_incomplete'),
   );
   /*$form['user_coms_default_no profile_video'] = array(
                 '#type' => 'textarea',
