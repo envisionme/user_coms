@@ -95,7 +95,7 @@ function user_coms_no_profile_pic_page($aid) {
   $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
   while($object = db_fetch_object($result)) {
     $print_user = user_load($object->uid);
-    $output .= $object->realname.' - '.$object->mail;
+    $output .= $print_user->realname.' - '.$print_user->mail;
   }
 
   $output .= '</p>';
