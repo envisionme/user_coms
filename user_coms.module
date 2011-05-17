@@ -224,10 +224,10 @@ function user_coms_email_body_form(&$form_state, $uid) {
 		case 'no_profile_pic_email':
       $default_value = 'one';
       break;
-    case 'pic_but_profile_incomplete_email':
+    case 'profile_incomplete_email':
       $default_value = 'two';
       break;
-    case 'completed_profile_but_no_profile_video_email':
+    case 'no_profile_video_email':
       $default_value = 'three';
       break;
     case 'no_showcase_email':
