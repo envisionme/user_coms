@@ -94,6 +94,7 @@ function user_coms_no_profile_pic_page($aid) {
   $output .= '<p>';
   $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
   while($object = db_fetch_object($result)) {
+      $result = db_query('SELECT nid FROM {node} n WHERE type = \'%s\' AND n.uid = %d LIMIT %d', 'uprofile', $object->uid, 1);
       $user_ids[] = $object->uid;  
       $output .= $object->uid.'<br />';
   }
