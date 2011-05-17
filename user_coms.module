@@ -175,25 +175,25 @@ function user_coms_settings_form() {
 	
   $form['user_coms_default_no profile_pic'] = array(
                 '#type' => 'textarea',
-                '#title' => 'Default e-mail body for users without a profile picture.',
+                '#title' => 'Default e-mail body for users without a profile picture',
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_no profile_pic'),
   );
   $form['user_coms_default_profile_incomplete'] = array(
                 '#type' => 'textarea',
-                '#title' => 'Default e-mail body for users who haven\'t completed their profiles.',
+                '#title' => 'Default e-mail body for users who haven\'t completed their profiles',
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_profile_incomplete'),
   );
   $form['user_coms_default_no profile_video'] = array(
                 '#type' => 'textarea',
-                '#title' => 'Default e-mail body for users without a profile video.',
+                '#title' => 'Default e-mail body for users without a profile video',
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_no profile_video'),
   );
   $form['user_coms_default_no_showcase'] = array(
                 '#type' => 'textarea',
-                '#title' => 'Default e-mail body for users without showcase items.',
+                '#title' => 'Default e-mail body for users without showcase items',
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_no_showcase'),
   );
