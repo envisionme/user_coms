@@ -342,3 +342,8 @@ function user_coms_mail($key, &$message, $params) {
   }
 }
 
+function profile_tmp_access_token_list($type = 'all') {
+    $tokens['global']['user_coms:realname'] = t('The user\'s real name');
+    $tokens['global']['user_coms:personal_url'] = t('The user\'s profile URL');
+    return $tokens;
+  }
