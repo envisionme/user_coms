@@ -91,6 +91,7 @@ function user_coms_menu() {
 */
 function user_coms_no_profile_pic_page($aid) {
   $output .= l('Send E-mail', 'user_coms/no_profile_pic_email');
+  $output .= '<p>';
   $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
   while($object = db_fetch_object($result)) {
     //~ Load the user to display's user profile
@@ -101,9 +102,10 @@ function user_coms_no_profile_pic_page($aid) {
     $output .= $user_profile->field_name[0]['value'].'<br />';
       
       //$user_ids[] = $object->uid;  
-      //$output .= $object->uid.'<br />';
+      $output .= $object->uid.'<br />';
   }
 
+  $output .= '</p>';
   $output .= l('Send E-mail', 'user_coms/no_profile_pic_email');
 
 	return $output;
