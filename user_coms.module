@@ -222,16 +222,16 @@ function user_coms_email_body_form(&$form_state, $uid) {
   //Set forms default value
   switch(arg(1)) {
 		case 'no_profile_pic_email':
-      $default_value = 'one';
+      $default_value = variable_get('user_coms_default_no_profile_pic');
       break;
     case 'profile_incomplete_email':
-      $default_value = 'two';
+      $default_value = variable_get('user_coms_default_profile_incomplete');
       break;
     case 'no_profile_video_email':
-      $default_value = 'three';
+      $default_value = variable_get('user_coms_default_no_profile_vid');
       break;
     case 'no_showcase_email':
-      $default_value = 'four';
+      $default_value = variable_get('user_coms_default_no_showcase');
       break;
   }
 
