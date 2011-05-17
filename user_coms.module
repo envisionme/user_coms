@@ -173,24 +173,24 @@ function user_coms_list_page($aid) {
  */
 function user_coms_settings_form() {
 	
-  $form['user_coms_default_no_profile_pic'] = array(
+  /*$form['user_coms_default_no_profile_pic'] = array(
                 '#type' => 'textarea',
                 '#title' => 'Default e-mail body for users who haven\'t completed their profiles',
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_no_profile_pic'),
-  );
+  );*/
   $form['user_coms_default_profile_incomplete'] = array(
                 '#type' => 'textarea',
                 '#title' => 'Default e-mail body for users who haven\'t completed their profiles',
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_profile_incomplete'),
   );
-  $form['user_coms_default_no profile_video'] = array(
+  /*$form['user_coms_default_no profile_video'] = array(
                 '#type' => 'textarea',
                 '#title' => 'Default e-mail body for users without a profile video',
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_no profile_video'),
-  );
+  );*/
   $form['user_coms_default_no_showcase'] = array(
                 '#type' => 'textarea',
                 '#title' => 'Default e-mail body for users without showcase items',
