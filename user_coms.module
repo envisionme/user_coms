@@ -219,13 +219,29 @@ function user_coms_settings_form() {
 */
 function user_coms_email_body_form(&$form_state, $uid) {
 
+  //Set forms default value
+  switch(arg(1)) {
+		case 'no_profile_pic_email':
+      $default_value = 'one';
+      break;
+    case 'pic_but_profile_incomplete_email':
+      $default_value = 'two';
+      break;
+    case 'completed_profile_but_no_profile_video_email':
+      $default_value = 'three';
+      break;
+    case 'no_showcase_email':
+      $default_value = 'four';
+      break;
+  }
+
 	$form['#tree'] = TRUE;
 	
 	$form['email_body'] = array(
 		'#type'   => 'textarea',
     '#rows'   => '7',
 		'#title'  => t('E-mail body'),
-    '#default_value' => variable_get('email_body'),
+    '#default_value' => $default_value,
 	);
 
   if (module_exists('token')) {
