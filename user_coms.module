@@ -191,11 +191,11 @@ function user_coms_settings_form() {
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_no profile_video'),
   );*/
-  $form['user_coms_default_no_showcase1'] = array(
+  $form['user_coms_default_no_profile_vid'] = array(
                 '#type' => 'textarea',
                 '#title' => 'Default e-mail body for users without showcase items',
                 '#rows' => '5',
-                '#default_value' => variable_get('user_coms_default_no_showcase1'),
+                '#default_value' => variable_get('user_coms_default_no_profile_vid'),
   );
   $form['user_coms_default_no_showcase'] = array(
                 '#type' => 'textarea',
