@@ -83,6 +83,14 @@ function user_coms_menu() {
 		'type' => MENU_NORMAL_ITEM,
 	);
 
+  $items['admin/settings/user_coms'] = array(
+		'title' => 'User Communications',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('user_coms_settings_form'),
+		'access arguments' => array('access administration pages'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+
 	return $items;
 }
 
@@ -158,6 +166,52 @@ function user_coms_list_page($aid) {
   $output .= '</ul>';
   
   return $output;
+}
+
+/**
+ * Implementation of the admin settings form
+ */
+function user_coms_settings_form() {
+	
+  $form['user_coms_default_no profile_pic'] = array(
+                '#type' => 'textarea',
+                '#title' => 'Default e-mail body for users without a profile picture.',
+                '#rows' => '5',
+                '#default_value' => variable_get('request_email'),
+  );
+  $form['user_coms_default_profile_incomplete'] = array(
+                '#type' => 'textarea',
+                '#title' => 'Default e-mail body for users who haven\'t completed their profiles.',
+                '#rows' => '5',
+                '#default_value' => variable_get('approved_email'),
+  );
+  $form['user_coms_default_no profile_video'] = array(
+                '#type' => 'textarea',
+                '#title' => 'Default e-mail body for users without a profile video.',
+                '#rows' => '5',
+                '#default_value' => variable_get('request_email'),
+  );
+  $form['user_coms_default_no_showcase'] = array(
+                '#type' => 'textarea',
+                '#title' => 'Default e-mail body for users without showcase items.',
+                '#rows' => '5',
+                '#default_value' => variable_get('approved_email'),
+  );
+  /*if (module_exists('token')) {
+    $form['email_tokens']['token_help'] = array(
+      '#title' => t('Replacement patterns'),
+      '#type' => 'fieldset',
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+      //'#description' => t('Prefer raw-text replacements for text to avoid problems with HTML entities!'),
+    );
+    $form['email_tokens']['token_help']['help'] = array(
+      '#value' => theme('token_help', 'node'),
+    );
+	}*/
+
+
+	return system_settings_form($form);
 }
 
 /**
