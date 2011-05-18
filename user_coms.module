@@ -282,8 +282,8 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
         drupal_mail('user_coms', 'no_profile_pic', 'williecoetzee@gmail.com', language_default(), $params); 
         //Now add to the db
         //First test if already in db
-        $result = db_query("SELECT * FROM {user_coms} WHERE uid = ".$object->uid);  
-        if (db_fetch_object($result)) {
+        $result3 = db_query("SELECT * FROM {user_coms} WHERE uid = ".$object->uid);  
+        if (db_fetch_object($result3)) {
           db_query('UPDATE {user_coms} SET email_status = 1 WHERE uid = '.$object->uid);
         }
         else {
