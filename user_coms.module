@@ -60,7 +60,7 @@ function user_coms_menu() {
 	);
 
   $items['user_coms/profile_incomplete_email'] = array(
-		'title' => 'E-mail users - No Profile Picture',
+		'title' => 'E-mail users - Profile Incomplete',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_body_form'),
 		'access callback' => TRUE,
@@ -68,7 +68,7 @@ function user_coms_menu() {
 	);
 
   $items['user_coms/no_profile_video_email'] = array(
-		'title' => 'E-mail users - No Profile Picture',
+		'title' => 'E-mail users - No Profile Video',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_body_form'),
 		'access callback' => TRUE,
@@ -76,7 +76,7 @@ function user_coms_menu() {
 	);
 
   $items['user_coms/no_showcase_email'] = array(
-		'title' => 'E-mail users - No Showcase Email',
+		'title' => 'E-mail users - No Showcase Items',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_body_form'),
 		'access callback' => TRUE,
