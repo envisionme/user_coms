@@ -283,7 +283,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
       } 
       drupal_set_message(t('E-mail sent to those without a profile picture'));
       break;
-    case 'pic_but_profile_incomplete_email':
+    case 'profile_incomplete_email':
       //Run the query to get the e-mail addresses to send to
       $result = db_query("SELECT * FROM {content_complete} INNER JOIN {node} ON {content_complete}.nid = {node}.nid WHERE {content_complete}.completeness < 50");  
       while($object = db_fetch_object($result)) {
@@ -294,7 +294,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
       } 
       drupal_set_message(t('E-mail sent to those whos profiles are incomplete'));
       break;
-    case 'completed_profile_but_no_profile_video_email':
+    case 'no_profile_video_email':
       //Run the query to get the e-mail addresses to send to
       $result = db_query("SELECT * FROM {flag_content} INNER JOIN {node} ON {flag_content}.content_id = {node}.nid WHERE {flag_content}.fid = 5");  
       while($object = db_fetch_object($result)) {
