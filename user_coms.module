@@ -327,23 +327,26 @@ function user_coms_mail($key, &$message, $params) {
 	switch($key) {
 		case 'no_profile_pic':
       $message['subject'] = t('NoJoShmo User Coms');
-      $body_string = $params['realname'].$params['email_body'];
+      $body_string = $params['email_body'];
       $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
       $message['body'][] = $body_string;
       break;
     case 'profile_incomplete':
       $message['subject'] = t('NoJoShmo User Coms');
       $body_string = $params['email_body'];
+      $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
       $message['body'][] = $body_string;
       break;
     case 'no_profile_video':
       $message['subject'] = t('NoJoShmo User Coms');
       $body_string = $params['email_body'];
+      $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
       $message['body'][] = $body_string;
       break;
     case 'no_showcase':
       $message['subject'] = t('NoJoShmo User Coms');
       $body_string = $params['email_body'];
+      $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
       $message['body'][] = $body_string;
       break;
   }
