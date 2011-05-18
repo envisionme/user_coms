@@ -1,0 +1,30 @@
+<?php
+
+  function user_coms_access_schema() {
+    
+    $schema = array();  
+
+    $schema['user_coms'] = array(
+      'fields' => array(
+        'user_coms_id'    => array('type' => 'serial', 'unsigned' => TRUE, 'not null' => TRUE),
+        'email_status'    => array('type' => 'int', 'not_null' => FALSE, 'default' => 0),
+        'last_sent'       => array('type' => 'int', 'not_null' => FALSE, 'default' => 0),
+      ),
+      'primary key' => array('user_coms_id'),
+    );
+
+    return $schema;
+
+  }
+
+  function user_coms_install() {
+    drupal_install_schema('user_coms');
+  }
+
+  function user_coms_uninstall() {
+    drupal_uninstall_schema('user_coms');
+  }
+
+//should I even have a closing tag here? 
+?> 
+
