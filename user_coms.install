@@ -1,6 +1,6 @@
 <?php
 
-  function user_coms_access_schema() {
+  function user_coms_schema() {
     
     $schema = array();  
 
