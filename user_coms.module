@@ -102,8 +102,10 @@ function user_coms_no_profile_pic_page($aid) {
   $output .= '<p>';
   $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
   while($object = db_fetch_object($result)) {
-    $print_user = user_load($object->uid);
-    $output .= theme('username', $print_user).' ('.$print_user->mail.') <br />';
+    if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
+      $print_user = user_load($object->uid);
+      $output .= theme('username', $print_user).' ('.$print_user->mail.') <br />';
+    }
   }
 
   $output .= '</p>';
@@ -117,8 +119,10 @@ function user_coms_profile_incomplete_page($aid) {
   $output .= '<p>';
 	$result = db_query("SELECT * FROM {content_complete} INNER JOIN {node} ON {content_complete}.nid = {node}.nid WHERE {content_complete}.completeness < 50");  
   while($object = db_fetch_object($result)) {
-    $print_user = user_load($object->uid);
-    $output .= theme('username', $print_user).' ('.$print_user->mail.') <br />';
+    if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
+      $print_user = user_load($object->uid);
+      $output .= theme('username', $print_user).' ('.$print_user->mail.') <br />';
+    }
   }
 
   $output .= '</p>';
@@ -132,8 +136,10 @@ function user_coms_no_profile_video_page($aid) {
   $output .= '<p>';
 	$result = db_query("SELECT * FROM {flag_content} INNER JOIN {node} ON {flag_content}.content_id = {node}.nid WHERE {flag_content}.fid = 5");  
   while($object = db_fetch_object($result)) {
-    $print_user = user_load($object->uid);
-    $output .= theme('username', $print_user).' ('.$print_user->mail.') <br />';
+    if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
+      $print_user = user_load($object->uid);
+      $output .= theme('username', $print_user).' ('.$print_user->mail.') <br />';
+    }
   }
 
   $output .= '</p>';
@@ -147,8 +153,10 @@ function user_coms_no_showcase_page($aid) {
   $output .= '<p>';
 	$result = db_query("SELECT * FROM {flag_content} INNER JOIN {node} ON {flag_content}.content_id = {node}.nid WHERE {flag_content}.fid = 5");  
   while($object = db_fetch_object($result)) {
-    $print_user = user_load($object->uid);
-    $output .= theme('username', $print_user).' ('.$print_user->mail.') <br />';
+    if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
+      $print_user = user_load($object->uid);
+      $output .= theme('username', $print_user).' ('.$print_user->mail.') <br />';
+    }
   }
 
   $output .= '</p>';
