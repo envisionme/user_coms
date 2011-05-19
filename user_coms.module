@@ -104,7 +104,6 @@ function user_coms_no_profile_pic_page($aid) {
   while($object = db_fetch_object($result)) {
     if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
       $print_user = user_load($object->uid);
-      print_r($print_user);
       $output .= theme('username', $print_user).' ('.$print_user->mail.') <br />';
     }
   }
@@ -298,6 +297,8 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
       while($object = db_fetch_object($result)) {
         $mail_user = user_load($object->uid);
         $params['realname'] = $mail_user->realname;
+        $params['first_name'] = $mail_user->field_name;
+        $params['username'] =$mail_user->username;
         //Only send e-mail if the user has not received one in the last 30 days
         if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
           drupal_mail('user_coms', 'no_profile_pic', 'williecoetzee@gmail.com', language_default(), $params); 
@@ -407,24 +408,32 @@ function user_coms_mail($key, &$message, $params) {
       $message['subject'] = t('NoJoShmo User Coms');
       $body_string = $params['email_body'];
       $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
+      $body_string = str_replace('[user_coms:first_name]', $params['first_name'], $body_string);
+      $body_string = str_replace('[user_coms:username]', $params['username'], $body_string);
       $message['body'][] = $body_string;
       break;
     case 'profile_incomplete':
       $message['subject'] = t('NoJoShmo User Coms');
       $body_string = $params['email_body'];
       $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
+      $body_string = str_replace('[user_coms:first_name]', $params['first_name'], $body_string);
+      $body_string = str_replace('[user_coms:username]', $params['username'], $body_string);
       $message['body'][] = $body_string;
       break;
     case 'no_profile_video':
       $message['subject'] = t('NoJoShmo User Coms');
       $body_string = $params['email_body'];
       $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
+      $body_string = str_replace('[user_coms:first_name]', $params['first_name'], $body_string);
+      $body_string = str_replace('[user_coms:username]', $params['username'], $body_string);
       $message['body'][] = $body_string;
       break;
     case 'no_showcase':
       $message['subject'] = t('NoJoShmo User Coms');
       $body_string = $params['email_body'];
       $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
+      $body_string = str_replace('[user_coms:first_name]', $params['first_name'], $body_string);
+      $body_string = str_replace('[user_coms:username]', $params['username'], $body_string);
       $message['body'][] = $body_string;
       break;
   }
@@ -432,6 +441,7 @@ function user_coms_mail($key, &$message, $params) {
 
 function user_coms_token_list($type = 'all') {
     $tokens['global']['user_coms:realname'] = t('The user\'s real name');
-    $tokens['global']['user_coms:personal_url'] = t('The user\'s profile URL');
+    $tokens['global']['first_name'] = t('The user\'s first name');
+    $tokens['global']['first_name'] = t('The user\'s username');
     return $tokens;
   }
