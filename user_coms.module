@@ -298,7 +298,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
         $mail_user = user_load($object->uid);
         $params['realname'] = $mail_user->realname;
         $params['first_name'] = $mail_user->field_name;
-        $params['username'] = $mail_user->username;
+        $params['username'] = $mail_user->name;
         //Only send e-mail if the user has not received one in the last 30 days
         if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
           drupal_mail('user_coms', 'no_profile_pic', 'williecoetzee@gmail.com', language_default(), $params); 
