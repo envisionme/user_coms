@@ -137,7 +137,7 @@ function user_coms_no_profile_video_page($aid) {
 	//$result = db_query("SELECT * FROM {flag_content} INNER JOIN {node} ON {flag_content}.content_id = {node}.nid WHERE {flag_content}.fid = 5");
   $result = db_query("SELECT * FROM {node} WHERE type = 'uprofile'");  
   while($object = db_fetch_object($result)) {
-    if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
+    if((user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) && avatar_video_attach_has_video($object->uid)) {
       $print_user = user_load($object->uid);
       $output .= theme('username', $print_user).' ('.$print_user->mail.') <br />';
     }
