@@ -19,28 +19,28 @@ function user_coms_menu() {
   $items['user_coms/list'] = array(
     'title' => 'Uncompleted Profiles',
     'page callback' => 'user_coms_list_page',
-    'access callback' => TRUE,
+    'access arguments' => array('access administration pages'),
     'type' => MENU_NORMAL_ITEM,
   );
 
   $items['user_coms/no_profile_pic'] = array(
 		'title' => 'List Users - No Profile Picture',
 		'page callback' => 'user_coms_no_profile_pic_page',
-    'access callback' => TRUE,
+    'access arguments' => array('access administration pages'),
 		'type' => MENU_NORMAL_ITEM,
 	);
 	
 	$items['user_coms/profile_incomplete'] = array(
 		'title' => 'List Users - Profile Incomplete',
 		'page callback' => 'user_coms_profile_incomplete_page',
-		'access callback' => TRUE,
+		'access arguments' => array('access administration pages'),
 		'type' => MENU_NORMAL_ITEM,
 	);
 
 	$items['user_coms/no_profile_video'] = array(
 		'title' => 'List Users - No Profile Video',
 		'page callback' => 'user_coms_no_profile_video_page',
-		'access callback' => TRUE,
+		'access arguments' => array('access administration pages'),
 		'type' => MENU_NORMAL_ITEM,
 	);
 
@@ -55,7 +55,7 @@ function user_coms_menu() {
 		'title' => 'E-mail users - No Profile Picture',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_body_form'),
-		'access callback' => TRUE,
+		'access arguments' => array('access administration pages'),
 		'type' => MENU_NORMAL_ITEM,
 	);
 
@@ -63,7 +63,7 @@ function user_coms_menu() {
 		'title' => 'E-mail users - Profile Incomplete',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_body_form'),
-		'access callback' => TRUE,
+		'access arguments' => array('access administration pages'),
 		'type' => MENU_NORMAL_ITEM,
 	);
 
@@ -71,7 +71,7 @@ function user_coms_menu() {
 		'title' => 'E-mail users - No Profile Video',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_body_form'),
-		'access callback' => TRUE,
+		'access arguments' => array('access administration pages'),
 		'type' => MENU_NORMAL_ITEM,
 	);
 
@@ -79,7 +79,7 @@ function user_coms_menu() {
 		'title' => 'E-mail users - No Showcase Items',
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('user_coms_email_body_form'),
-		'access callback' => TRUE,
+		'access arguments' => array('access administration pages'),
 		'type' => MENU_NORMAL_ITEM,
 	);
 
