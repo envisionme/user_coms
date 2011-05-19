@@ -284,6 +284,25 @@ function user_coms_get_last_sent($uid) {
     return 0;  
   }
 }
+
+
+function user_coms_has_showcase($uid) {
+  $result = db_query("SELECT * FROM {content_type_showcase_audio} INNER JOIN {node} ON {content_type_showcase_audio}.nid = {node}.nid WHERE {node}.uid = ".$uid);
+  if (db_fetch_object($result))
+    return true;
+  $result = db_query("SELECT * FROM {content_type_showcase_document} INNER JOIN {node} ON {content_type_showcase_document}.nid = {node}.nid WHERE {node}.uid = ".$uid);
+  if (db_fetch_object($result))
+    return true;
+  $result = db_query("SELECT * FROM {content_type_showcase_image} INNER JOIN {node} ON {content_type_showcase_image}.nid = {node}.nid WHERE {node}.uid = ".$uid);
+  if (db_fetch_object($result))
+    return true;
+  $result = db_query("SELECT * FROM {content_type_showcase_slide} INNER JOIN {node} ON {content_type_showcase_slide}.nid = {node}.nid WHERE {node}.uid = ".$uid);
+  if (db_fetch_object($result))
+    return true;
+  $result = db_query("SELECT * FROM {content_type_showcase_video} INNER JOIN {node} ON {content_type_showcase_video}.nid = {node}.nid WHERE {node}.uid = ".$uid);
+  if (db_fetch_object($result))
+    return true;
+}
 /**
 * Form submit callback function
 */
