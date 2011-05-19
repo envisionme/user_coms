@@ -403,26 +403,28 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
       break;
     case 'no_showcase_email':
       //Run the query to get the e-mail addresses to send to
-      $result = db_query("SELECT * FROM {flag_content} INNER JOIN {node} ON {flag_content}.content_id = {node}.nid WHERE {flag_content}.fid = 5");  
+      $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid");  
       while($object = db_fetch_object($result)) {
-        $mail_user = user_load($object->uid);
-        $params['realname'] = $mail_user->realname;
-        $params['first_name'] = $mail_user->field_name;
-        $params['username'] = $mail_user->name;
-        drupal_mail('user_coms', 'no_showcase', 'williecoetzee@gmail.com', language_default(), $params); 
-        //Now add to the db
-        //First test if already in db
-        $result3 = db_query("SELECT * FROM {user_coms} WHERE uid = ".$object->uid);  
-        if (db_fetch_object($result3)) {
-          db_query('UPDATE {user_coms} SET email_status = 4, last_sent = '.time().' WHERE uid = '.$object->uid);
-        }
-        else {
-          $data = array(
-            'uid' => $object->uid,
-            'email_status' => 4,
-            'last_sent' => time(),
-          );
-          drupal_write_record('user_coms', $data);
+        if(user_coms_has_showcase($object->uid)) {
+          $mail_user = user_load($object->uid);
+          $params['realname'] = $mail_user->realname;
+          $params['first_name'] = $mail_user->field_name;
+          $params['username'] = $mail_user->name;
+          drupal_mail('user_coms', 'no_showcase', 'williecoetzee@gmail.com', language_default(), $params); 
+          //Now add to the db
+          //First test if already in db
+          $result3 = db_query("SELECT * FROM {user_coms} WHERE uid = ".$object->uid);  
+          if (db_fetch_object($result3)) {
+            db_query('UPDATE {user_coms} SET email_status = 4, last_sent = '.time().' WHERE uid = '.$object->uid);
+          }
+          else {
+            $data = array(
+              'uid' => $object->uid,
+              'email_status' => 4,
+              'last_sent' => time(),
+            );
+            drupal_write_record('user_coms', $data);
+          }
         }
       } 
       drupal_set_message(t('E-mail sent to those without showcase items'));
