@@ -321,7 +321,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
         $params['username'] = $mail_user->name;
         //Only send e-mail if the user has not received one in the last 30 days
         if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
-          drupal_mail('user_coms', 'no_profile_pic', 'ivanbreet@gmail.com', language_default(), $params); 
+          drupal_mail('user_coms', 'no_profile_pic', 'williecoetzee@gmail.com', language_default(), $params); 
           //Now add to the db
           //First test if already in db
           $result3 = db_query("SELECT * FROM {user_coms} WHERE uid = ".$object->uid);  
@@ -350,7 +350,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
         $params['username'] = $mail_user->name;
         //Only send e-mail if the user has not received one in the last 30 days
         if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
-          drupal_mail('user_coms', 'profile_incomplete', 'ivanbreet@gmail.com', language_default(), $params); 
+          drupal_mail('user_coms', 'profile_incomplete', 'williecoetzee@gmail.com', language_default(), $params); 
           //Now add to the db
           //First test if already in db
           $result3 = db_query("SELECT * FROM {user_coms} WHERE uid = ".$object->uid);  
@@ -377,7 +377,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
         $params['realname'] = $mail_user->realname;
         $params['first_name'] = $mail_user->field_name;
         $params['username'] = $mail_user->name;
-        drupal_mail('user_coms', 'no_profile_video', 'ivanbreet@gmail.com', language_default(), $params);
+        drupal_mail('user_coms', 'no_profile_video', 'williecoetzee@gmail.com', language_default(), $params);
         //Now add to the db
         //First test if already in db
         $result3 = db_query("SELECT * FROM {user_coms} WHERE uid = ".$object->uid);  
@@ -403,7 +403,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
         $params['realname'] = $mail_user->realname;
         $params['first_name'] = $mail_user->field_name;
         $params['username'] = $mail_user->name;
-        drupal_mail('user_coms', 'no_showcase', 'ivanbreet@gmail.com', language_default(), $params); 
+        drupal_mail('user_coms', 'no_showcase', 'williecoetzee@gmail.com', language_default(), $params); 
         //Now add to the db
         //First test if already in db
         $result3 = db_query("SELECT * FROM {user_coms} WHERE uid = ".$object->uid);  
