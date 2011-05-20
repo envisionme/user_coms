@@ -334,7 +334,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
           if (variable_get('user_coms_test_mode') == 1)
             $send_to = 'williecoetzee@gmail.com';
           else
-            $send_to = 'sjdjksdhjkshd@jdlkjslkd.com';//$mail_user->mail;
+            $send_to = $mail_user->mail;
 
           drupal_mail('user_coms', 'no_profile_pic', $send_to, language_default(), $params); 
           //Now add to the db
@@ -369,7 +369,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
           if (variable_get('user_coms_test_mode') == 1)
             $send_to = 'williecoetzee@gmail.com';
           else
-            $send_to = 'sjdjksdhjkshd@jdlkjslkd.com';//$mail_user->mail;
+            $send_to = $mail_user->mail;
 
           drupal_mail('user_coms', 'profile_incomplete', $send_to, language_default(), $params); 
           //Now add to the db
@@ -403,7 +403,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
           if (variable_get('user_coms_test_mode') == 1)
             $send_to = 'williecoetzee@gmail.com';
           else
-            $send_to = 'sjdjksdhjkshd@jdlkjslkd.com';//$mail_user->mail;
+            $send_to = $mail_user->mail;
 
           drupal_mail('user_coms', 'no_profile_video', $send_to, language_default(), $params);
           //Now add to the db
@@ -437,7 +437,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
           if (variable_get('user_coms_test_mode') == 1)
             $send_to = 'williecoetzee@gmail.com';
           else
-            $send_to = 'sjdjksdhjkshd@jdlkjslkd.com';//$mail_user->mail;
+            $send_to = $mail_user->mail;
 
           drupal_mail('user_coms', 'no_showcase', $send_to, language_default(), $params); 
           //Now add to the db
