@@ -212,6 +212,7 @@ function user_coms_settings_form() {
   $form['user_coms_test_mode'] = array(
                 '#type' => 'checkbox',
                 '#title' => 'Test mode - Puts the module in test mode.',
+                '#default_value' => variable_get('user_coms_test_mode'),
   );
   if (module_exists('token')) {
     $form['email_tokens']['token_help'] = array(
