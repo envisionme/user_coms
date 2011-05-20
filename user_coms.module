@@ -183,6 +183,8 @@ function user_coms_list_page($aid) {
  */
 function user_coms_settings_form() {
 	
+  print_r(variable_get('user_coms_test_mode'));
+
   $form['user_coms_default_no_profile_pic'] = array(
                 '#type' => 'textarea',
                 '#title' => 'Default e-mail body for users who haven\'t completed their profiles',
