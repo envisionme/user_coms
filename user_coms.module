@@ -326,6 +326,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
 
   switch(arg(1)) {
 		case 'no_profile_pic_email':
+      $one_mail_sent = FALSE;
       //Run the query to get the e-mail addresses to send to
       $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
       while($object = db_fetch_object($result)) {
@@ -340,8 +341,15 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
             $send_to = variable_get('user_coms_test_email');
           else
             $send_to = $mail_user->mail;
-
-          drupal_mail('user_coms', 'no_profile_pic', $send_to, language_default(), $params); 
+          if ((variable_get(user_coms_test_mode) == 1) && !$one_mail_sent) {
+            drupal_mail('user_coms', 'no_profile_pic', $send_to, language_default(), $params); 
+            $one_mail_sent = TRUE;
+          }
+          else if(variable_get(user_coms_test_mode) == 1) {
+            //Do Nothing            
+          }
+          else
+            drupal_mail('user_coms', 'no_profile_pic', $send_to, language_default(), $params);
           //Now add to the db
           //First test if already in db
           $result3 = db_query("SELECT * FROM {user_coms} WHERE uid = %d", $object->uid);  
