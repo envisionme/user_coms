@@ -183,11 +183,21 @@ function user_coms_list_page($aid) {
  */
 function user_coms_settings_form() {
 
+  $form['user_coms_default_no_profile_pic_subject'] = array(
+                '#type' => 'textfield',
+                '#title' => 'Default e-mail subject for users who haven\'t completed their profiles',
+                '#default_value' => variable_get('user_coms_default_no_profile_pic_subject', NULL),
+  );
   $form['user_coms_default_no_profile_pic'] = array(
                 '#type' => 'textarea',
                 '#title' => 'Default e-mail body for users who haven\'t completed their profiles',
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_no_profile_pic', NULL),
+  );
+  $form['user_coms_default_profile_incomplete_subject'] = array(
+                '#type' => 'textfield',
+                '#title' => 'Default e-mail subject for users who haven\'t completed their profiles',
+                '#default_value' => variable_get('user_coms_default_profile_incomplete_subject', NULL),
   );
   $form['user_coms_default_profile_incomplete'] = array(
                 '#type' => 'textarea',
@@ -195,11 +205,21 @@ function user_coms_settings_form() {
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_profile_incomplete', NULL),
   );
+  $form['user_coms_default_no_profile_vid_subject'] = array(
+                '#type' => 'textfield',
+                '#title' => 'Default e-mail subject for users without profile videos',
+                '#default_value' => variable_get('user_coms_default_no_profile_vid_subject', NULL),
+  );
   $form['user_coms_default_no_profile_vid'] = array(
                 '#type' => 'textarea',
-                '#title' => 'Default e-mail body for users without showcase items',
+                '#title' => 'Default e-mail body for users without profile videos',
                 '#rows' => '5',
                 '#default_value' => variable_get('user_coms_default_no_profile_vid', NULL),
+  );
+  $form['user_coms_default_no_showcase_subject'] = array(
+                '#type' => 'textfield',
+                '#title' => 'Default e-mail subject for users without profile videos',
+                '#default_value' => variable_get('user_coms_default_no_showcase_subject', NULL),
   );
   $form['user_coms_default_no_showcase'] = array(
                 '#type' => 'textarea',
