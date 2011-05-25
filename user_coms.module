@@ -503,38 +503,25 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
 * Implementation of hook_mail
 */
 function user_coms_mail($key, &$message, $params) {
+
+  $body_string = $params['email_body'];
+  $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
+  $body_string = str_replace('[user_coms:first_name]', $params['first_name'], $body_string);
+  $body_string = str_replace('[user_coms:username]', $params['username'], $body_string);
+  $message['body'][] = $body_string;  
+
 	switch($key) {
 		case 'no_profile_pic':
-      $message['subject'] = t('NoJoShmo User Coms');
-      $body_string = $params['email_body'];
-      $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
-      $body_string = str_replace('[user_coms:first_name]', $params['first_name'], $body_string);
-      $body_string = str_replace('[user_coms:username]', $params['username'], $body_string);
-      $message['body'][] = $body_string;
+      $message['subject'] = t('NoJoShmo User Coms');    
       break;
     case 'profile_incomplete':
       $message['subject'] = t('NoJoShmo User Coms');
-      $body_string = $params['email_body'];
-      $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
-      $body_string = str_replace('[user_coms:first_name]', $params['first_name'], $body_string);
-      $body_string = str_replace('[user_coms:username]', $params['username'], $body_string);
-      $message['body'][] = $body_string;
       break;
     case 'no_profile_video':
       $message['subject'] = t('NoJoShmo User Coms');
-      $body_string = $params['email_body'];
-      $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
-      $body_string = str_replace('[user_coms:first_name]', $params['first_name'], $body_string);
-      $body_string = str_replace('[user_coms:username]', $params['username'], $body_string);
-      $message['body'][] = $body_string;
       break;
     case 'no_showcase':
       $message['subject'] = t('NoJoShmo User Coms');
-      $body_string = $params['email_body'];
-      $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
-      $body_string = str_replace('[user_coms:first_name]', $params['first_name'], $body_string);
-      $body_string = str_replace('[user_coms:username]', $params['username'], $body_string);
-      $message['body'][] = $body_string;
       break;
   }
 }
@@ -544,4 +531,4 @@ function user_coms_token_list($type = 'all') {
     $tokens['global']['user_coms:first_name'] = t('The user\'s first name');
     $tokens['global']['user_coms:username'] = t('The user\'s username');
     return $tokens;
-  }
+}
