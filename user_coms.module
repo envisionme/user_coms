@@ -274,7 +274,7 @@ function user_coms_email_body_form(&$form_state, $uid) {
       break;
     case 'no_showcase_email':
       $default_value = variable_get('user_coms_default_no_showcase', NULL);
-      $default_value = variable_get('user_coms_default_no_showcase_subject', NULL);
+      $default_subject = variable_get('user_coms_default_no_showcase_subject', NULL);
       break;
   }
 
