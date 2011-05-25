@@ -262,19 +262,29 @@ function user_coms_email_body_form(&$form_state, $uid) {
   switch(arg(1)) {
 		case 'no_profile_pic_email':
       $default_value = variable_get('user_coms_default_no_profile_pic', NULL);
+      $default_subject = variable_get('user_coms_default_no_profile_pic_subject', NULL);
       break;
     case 'profile_incomplete_email':
       $default_value = variable_get('user_coms_default_profile_incomplete', NULL);
+      $default_subject = variable_get('user_coms_default_profile_incomplete_subject', NULL);
       break;
     case 'no_profile_video_email':
       $default_value = variable_get('user_coms_default_no_profile_vid', NULL);
+      $default_subject = variable_get('user_coms_default_no_profile_vid_subject', NULL);
       break;
     case 'no_showcase_email':
       $default_value = variable_get('user_coms_default_no_showcase', NULL);
+      $default_value = variable_get('user_coms_default_no_showcase_subject', NULL);
       break;
   }
 
 	$form['#tree'] = TRUE;
+
+  $form['email_subject'] = array(
+    '#type' => 'textfield',
+    '#title' => 'E-mail Subject',
+    '#default_value' => $default_subject,
+  );
 	
 	$form['email_body'] = array(
 		'#type'   => 'textarea',
@@ -524,6 +534,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
 */
 function user_coms_mail($key, &$message, $params) {
 
+  $message['subject'] = t('NoJoShmo User Coms');
   $body_string = $params['email_body'];
   $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
   $body_string = str_replace('[user_coms:first_name]', $params['first_name'], $body_string);
@@ -532,16 +543,16 @@ function user_coms_mail($key, &$message, $params) {
 
 	switch($key) {
 		case 'no_profile_pic':
-      $message['subject'] = t('NoJoShmo User Coms');    
+      //$message['subject'] = t('NoJoShmo User Coms');    
       break;
     case 'profile_incomplete':
-      $message['subject'] = t('NoJoShmo User Coms');
+      //$message['subject'] = t('NoJoShmo User Coms');
       break;
     case 'no_profile_video':
-      $message['subject'] = t('NoJoShmo User Coms');
+      //$message['subject'] = t('NoJoShmo User Coms');
       break;
     case 'no_showcase':
-      $message['subject'] = t('NoJoShmo User Coms');
+      //$message['subject'] = t('NoJoShmo User Coms');
       break;
   }
 }
