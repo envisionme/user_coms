@@ -353,6 +353,7 @@ function user_coms_has_showcase($uid) {
 function user_coms_email_body_form_submit($form_id, $form_values) {
 
   $params['email_body'] = $form_values['values']['email_body'];  
+  $params['email_subject'] = $form_values['values']['email_subject'];
 
   switch(arg(1)) {
 		case 'no_profile_pic_email':
@@ -534,7 +535,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
 */
 function user_coms_mail($key, &$message, $params) {
 
-  $message['subject'] = t('NoJoShmo User Coms');
+  $message['subject'] = $params['email_subject'];
   $body_string = $params['email_body'];
   $body_string = str_replace('[user_coms:realname]', $params['realname'], $body_string);
   $body_string = str_replace('[user_coms:first_name]', $params['first_name'], $body_string);
