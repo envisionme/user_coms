@@ -218,7 +218,7 @@ function user_coms_settings_form() {
   );
   $form['user_coms_default_no_showcase_subject'] = array(
                 '#type' => 'textfield',
-                '#title' => 'Default e-mail subject for users without profile videos',
+                '#title' => 'Default e-mail subject for users without showcase items',
                 '#default_value' => variable_get('user_coms_default_no_showcase_subject', NULL),
   );
   $form['user_coms_default_no_showcase'] = array(
