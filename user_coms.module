@@ -102,7 +102,7 @@ function user_coms_no_profile_pic_page($aid) {
   $output .= '<p>';
   $result = user_coms_get_query_result('no_profile_pic');
   while($object = db_fetch_object($result)) {
-    print_r($object);
+    print_r($object->created);
     if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
       $print_user = user_load($object->uid);
       $output .= theme('username', $print_user).' ('.$print_user->mail.') <br />';
