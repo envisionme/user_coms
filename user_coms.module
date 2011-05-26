@@ -100,7 +100,7 @@ function user_coms_menu() {
 function user_coms_no_profile_pic_page($aid) {
   $output .= l('Send E-mail', 'user_coms/no_profile_pic_email');
   $output .= '<p>';
-  $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
+  $result = user_coms_get_query_result('no_profile_pic');//db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
   while($object = db_fetch_object($result)) {
     if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
       $print_user = user_load($object->uid);
@@ -311,40 +311,6 @@ function user_coms_email_body_form(&$form_state, $uid) {
 	);
 
 	return $form;
-}
-
-/**
-* Helper functions
-*/
-function user_coms_get_last_sent($uid) {
-  $qresult = db_query("SELECT * FROM {user_coms} WHERE uid = %d", $uid);
-  if ($qobject = db_fetch_object($qresult)) {
-    return $qobject->last_sent;
-  }
-  else {
-    return 0;  
-  }
-}
-
-
-function user_coms_has_showcase($uid) {
-  $result = db_query("SELECT * FROM {content_type_showcase_audio} INNER JOIN {node} ON {content_type_showcase_audio}.nid = {node}.nid WHERE {node}.uid = %d", $uid);
-  if (db_fetch_object($result))
-    return true;
-  $result = db_query("SELECT * FROM {content_type_showcase_document} INNER JOIN {node} ON {content_type_showcase_document}.nid = {node}.nid WHERE {node}.uid = %d", $uid);
-  if (db_fetch_object($result))
-    return true;
-  $result = db_query("SELECT * FROM {content_type_showcase_image} INNER JOIN {node} ON {content_type_showcase_image}.nid = {node}.nid WHERE {node}.uid = %d", $uid);
-  if (db_fetch_object($result))
-    return true;
-  $result = db_query("SELECT * FROM {content_type_showcase_slide} INNER JOIN {node} ON {content_type_showcase_slide}.nid = {node}.nid WHERE {node}.uid = %d", $uid);
-  if (db_fetch_object($result))
-    return true;
-  $result = db_query("SELECT * FROM {content_type_showcase_video} INNER JOIN {node} ON {content_type_showcase_video}.nid = {node}.nid WHERE {node}.uid = %d", $uid);
-  if (db_fetch_object($result))
-    return true;
-
-  return false;
 }
 
 /**
@@ -563,4 +529,58 @@ function user_coms_token_list($type = 'all') {
     $tokens['global']['user_coms:first_name'] = t('The user\'s first name');
     $tokens['global']['user_coms:username'] = t('The user\'s username');
     return $tokens;
+}
+
+/**
+* Helper functions
+*/
+
+function user_coms_get_query_result($key) {
+  switch($key) {
+		case 'no_profile_pic':
+      $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");
+      return $result;  
+      break;
+    case 'profile_incomplete':
+      
+      break;
+    case 'no_profile_vid':
+      
+      break;
+    case 'no_showcase':
+     
+      break;
+  }
+  return NULL;
+}
+
+function user_coms_get_last_sent($uid) {
+  $qresult = db_query("SELECT * FROM {user_coms} WHERE uid = %d", $uid);
+  if ($qobject = db_fetch_object($qresult)) {
+    return $qobject->last_sent;
+  }
+  else {
+    return 0;  
+  }
+}
+
+
+function user_coms_has_showcase($uid) {
+  $result = db_query("SELECT * FROM {content_type_showcase_audio} INNER JOIN {node} ON {content_type_showcase_audio}.nid = {node}.nid WHERE {node}.uid = %d", $uid);
+  if (db_fetch_object($result))
+    return true;
+  $result = db_query("SELECT * FROM {content_type_showcase_document} INNER JOIN {node} ON {content_type_showcase_document}.nid = {node}.nid WHERE {node}.uid = %d", $uid);
+  if (db_fetch_object($result))
+    return true;
+  $result = db_query("SELECT * FROM {content_type_showcase_image} INNER JOIN {node} ON {content_type_showcase_image}.nid = {node}.nid WHERE {node}.uid = %d", $uid);
+  if (db_fetch_object($result))
+    return true;
+  $result = db_query("SELECT * FROM {content_type_showcase_slide} INNER JOIN {node} ON {content_type_showcase_slide}.nid = {node}.nid WHERE {node}.uid = %d", $uid);
+  if (db_fetch_object($result))
+    return true;
+  $result = db_query("SELECT * FROM {content_type_showcase_video} INNER JOIN {node} ON {content_type_showcase_video}.nid = {node}.nid WHERE {node}.uid = %d", $uid);
+  if (db_fetch_object($result))
+    return true;
+
+  return false;
 }
