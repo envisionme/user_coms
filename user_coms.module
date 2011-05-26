@@ -100,7 +100,7 @@ function user_coms_menu() {
 function user_coms_no_profile_pic_page($aid) {
   $output .= l('Send E-mail', 'user_coms/no_profile_pic_email');
   $output .= '<p>';
-  $result = user_coms_get_query_result('no_profile_pic');//db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
+  $result = user_coms_get_query_result('no_profile_pic');
   while($object = db_fetch_object($result)) {
     if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
       $print_user = user_load($object->uid);
@@ -117,7 +117,7 @@ function user_coms_no_profile_pic_page($aid) {
 function user_coms_profile_incomplete_page($aid) {
   $output .= l('Send E-mail', 'user_coms/profile_incomplete_email');
   $output .= '<p>';
-	$result = db_query("SELECT * FROM {content_complete} INNER JOIN {node} ON {content_complete}.nid = {node}.nid WHERE {content_complete}.completeness < 50");  
+	$result = user_coms_get_query_result('profile_incomplete'); 
   while($object = db_fetch_object($result)) {
     if(user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) {
       $print_user = user_load($object->uid);
@@ -134,7 +134,7 @@ function user_coms_profile_incomplete_page($aid) {
 function user_coms_no_profile_video_page($aid) {
   $output .= l('Send E-mail', 'user_coms/no_profile_video_email');
   $output .= '<p>';
-  $result = db_query("SELECT * FROM {node} WHERE type = '%s'", 'uprofile');  
+  $result = user_coms_get_query_result('no_profile_vid');  
   while($object = db_fetch_object($result)) {
     if((user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) && !avatar_video_attach_has_video($object->uid)) {
       $print_user = user_load($object->uid);
@@ -325,7 +325,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
 		case 'no_profile_pic_email':
       $one_mail_sent = FALSE;
       //Run the query to get the e-mail addresses to send to
-      $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");  
+      $result = user_coms_get_query_result('no_profile_pic');
       while($object = db_fetch_object($result)) {
         $mail_user = user_load($object->uid);
         $params['realname'] = $mail_user->realname;
@@ -368,7 +368,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
     case 'profile_incomplete_email':
       $one_mail_sent = FALSE;
       //Run the query to get the e-mail addresses to send to
-      $result = db_query("SELECT * FROM {content_complete} INNER JOIN {node} ON {content_complete}.nid = {node}.nid WHERE {content_complete}.completeness < 50");  
+      $result = user_coms_get_query_result('profile_incomplete'); 
       while($object = db_fetch_object($result)) {
         $mail_user = user_load($object->uid);
         $params['realname'] = $mail_user->realname;
@@ -453,7 +453,7 @@ function user_coms_email_body_form_submit($form_id, $form_values) {
     case 'no_showcase_email':
       $one_mail_sent = FALSE;
       //Run the query to get the e-mail addresses to send to
-      $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid");  
+      $result = user_coms_get_query_result('no_profile_vid'); 
       while($object = db_fetch_object($result)) {
         if(user_coms_has_showcase($object->uid)) {
           $mail_user = user_load($object->uid);
@@ -507,21 +507,6 @@ function user_coms_mail($key, &$message, $params) {
   $body_string = str_replace('[user_coms:first_name]', $params['first_name'], $body_string);
   $body_string = str_replace('[user_coms:username]', $params['username'], $body_string);
   $message['body'][] = $body_string;  
-
-	switch($key) {
-		case 'no_profile_pic':
-      //$message['subject'] = t('NoJoShmo User Coms');    
-      break;
-    case 'profile_incomplete':
-      //$message['subject'] = t('NoJoShmo User Coms');
-      break;
-    case 'no_profile_video':
-      //$message['subject'] = t('NoJoShmo User Coms');
-      break;
-    case 'no_showcase':
-      //$message['subject'] = t('NoJoShmo User Coms');
-      break;
-  }
 }
 
 function user_coms_token_list($type = 'all') {
@@ -540,15 +525,14 @@ function user_coms_get_query_result($key) {
 		case 'no_profile_pic':
       $result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid WHERE {content_type_uprofile}.field_profile_image_list IS NULL");
       return $result;  
-      break;
     case 'profile_incomplete':
-      
-      break;
+      $result = db_query("SELECT * FROM {content_complete} INNER JOIN {node} ON {content_complete}.nid = {node}.nid WHERE {content_complete}.completeness < 50");
+      return $result;
     case 'no_profile_vid':
-      
-      break;
+      $result = db_query("SELECT * FROM {node} WHERE type = '%s'", 'uprofile');
+      return $result;
     case 'no_showcase':
-     
+      //Do nothing yet...
       break;
   }
   return NULL;
