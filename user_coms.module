@@ -14,9 +14,9 @@ function user_coms_help($path, $args) {
 * Implementation of hook_settings
 */
 function user_coms_settings($op, &$edit, &$account, $category = NULL) {
+  print_r('function called');
   switch($op) {
     case 'form':
-      print_r('function called');
       //if($category == "account") {
         $form = array();
         $form['user_coms_settings']['receive_reminder_mails'] = array(
