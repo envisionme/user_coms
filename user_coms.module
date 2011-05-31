@@ -20,7 +20,7 @@ function user_coms($op, &$edit, &$account, $category = NULL) {
       $form['user_coms_settings']['receive_reminder_mails'] = array(
         '#type'           => 'checkbox',
         '#title'          => t('Receive mail reminders on profile completion'),
-        '#default_value'  => isset($edit['receive_reminder_mails']) ? $edit['receive_reminder_mails' : 1,
+        '#default_value'  => isset($edit['receive_reminder_mails']) ? $edit['receive_reminder_mails'] : 1,
         '#description'    => t('Check this if you want to receive e-mail reminders on profile completion'),
       );
       return $form;
