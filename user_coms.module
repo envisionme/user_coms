@@ -24,6 +24,14 @@ function user_coms_user($op, &$edit, &$account, $category = NULL) {
           '#default_value'  => isset($edit['receive_reminder_mails']) ? $edit['receive_reminder_mails'] : 1,
           '#description'    => t('Check this if you want to receive e-mail reminders on profile completion'),
         );
+        $user_coms_settings = array(
+          '#type'           => 'fieldset',
+          '#title'          => t('Profile Content Reminders'),
+          '#weight'         => 5,
+          '#collapsible'    => TRUE,
+        );
+        $form['user_coms_settings'] = array_merge($form['user_coms_settings'], $user_coms_settings);
+
         return $form;
       }
       break;
