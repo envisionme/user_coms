@@ -16,6 +16,7 @@ function user_coms_help($path, $args) {
 function user_coms_settings($op, &$edit, &$account, $category = NULL) {
   switch($op) {
     case 'form':
+      print_r('function called');
       //if($category == "account") {
         $form = array();
         $form['user_coms_settings']['receive_reminder_mails'] = array(
