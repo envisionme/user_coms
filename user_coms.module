@@ -13,7 +13,7 @@ function user_coms_help($path, $args) {
 /**
 * Implementation of hook_settings
 */
-function user_coms($op, &$edit, &$account, $category = NULL) {
+function user_coms_settings($op, &$edit, &$account, $category = NULL) {
   switch($op) {
     case 'form':
       if($category == "account") {
