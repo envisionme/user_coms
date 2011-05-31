@@ -10,6 +10,7 @@
         'uid'             => array('type' => 'int', 'not_null' => FALSE, 'default' => 0),
         'email_status'    => array('type' => 'int', 'not_null' => FALSE, 'default' => 0),
         'last_sent'       => array('type' => 'int', 'not_null' => FALSE, 'default' => 0),
+        'settings_allow'  => array('type' => 'int', 'not_null' => FALSE, 'default' => 1),     
       ),
       'primary key' => array('user_coms_id'),
     );
