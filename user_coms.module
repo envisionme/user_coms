@@ -134,7 +134,7 @@ function user_coms_no_profile_pic_page($aid) {
       $print_user = user_load($object->uid);
       //$test_field = "receive_reminder_mails";
       //$output .= $print_user->$test_field;
-      $profile = profile_load_profile($print_user);
+      //$profile = profile_load_profile($print_user);
       print_r($profile);
       $output .= theme('username', $print_user).' ('.$print_user->mail.') - '.$print_user->created.'<br />';
     }
