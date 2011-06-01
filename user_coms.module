@@ -130,12 +130,8 @@ function user_coms_no_profile_pic_page($aid) {
   $output .= '<p>';
   $result = user_coms_get_query_result('no_profile_pic');
   while($object = db_fetch_object($result)) {
-    if((user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) && ($print_user->created < time() - (30 * 24 * 60 * 60))) {
-      $print_user = user_load($object->uid);
-      //$test_field = "receive_reminder_mails";
-      $output .= $print_user->receive_reminder_mails;
-      //$profile = profile_load_profile($print_user);
-      print_r($profile);
+    $print_user = user_load($object->uid);
+    if((user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) && ($print_user->created < time() - (30 * 24 * 60 * 60)) && user_coms_user_allows_mail($print_user)) {      
       $output .= theme('username', $print_user).' ('.$print_user->mail.') - '.$print_user->created.'<br />';
     }
   }
@@ -578,6 +574,13 @@ function user_coms_get_last_sent($uid) {
   else {
     return 0;  
   }
+}
+
+function user_coms_user_allows_mail($user) {
+  if ($print_user->receive_reminder_mails == 0)
+    return FALSE;
+  else
+    return TRUE;
 }
 
 
