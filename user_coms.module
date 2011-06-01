@@ -132,8 +132,8 @@ function user_coms_no_profile_pic_page($aid) {
   while($object = db_fetch_object($result)) {
     if((user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) && ($print_user->created < time() - (30 * 24 * 60 * 60))) {
       $print_user = user_load($object->uid);
-      $test_field = "receive_reminder_mails";
-      $output .= $print_user->$test_field;
+      //$test_field = "receive_reminder_mails";
+      $output .= $print_user['receive_reminder_mails'];
       //$profile = profile_load_profile($print_user);
       print_r($profile);
       $output .= theme('username', $print_user).' ('.$print_user->mail.') - '.$print_user->created.'<br />';
