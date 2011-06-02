@@ -125,7 +125,7 @@ function user_coms_menu() {
 /**
 * Page Callbacks
 */
-function user_coms_no_profile_pic_page($aid) {
+function user_coms_no_profile_pic_page() {
   $output .= l('Send E-mail', 'user_coms/no_profile_pic_email');
   $output .= '<p>';
   $result = user_coms_get_query_result('no_profile_pic');
@@ -142,7 +142,7 @@ function user_coms_no_profile_pic_page($aid) {
 	return $output;
 }
 
-function user_coms_profile_incomplete_page($aid) {
+function user_coms_profile_incomplete_page() {
   $output .= l('Send E-mail', 'user_coms/profile_incomplete_email');
   $output .= '<p>';
 	$result = user_coms_get_query_result('profile_incomplete'); 
@@ -159,7 +159,7 @@ function user_coms_profile_incomplete_page($aid) {
 	return $output;
 }
 
-function user_coms_no_profile_video_page($aid) {
+function user_coms_no_profile_video_page() {
   $output .= l('Send E-mail', 'user_coms/no_profile_video_email');
   $output .= '<p>';
   $result = user_coms_get_query_result('no_profile_vid');  
@@ -176,7 +176,7 @@ function user_coms_no_profile_video_page($aid) {
 	return $output;
 }
 
-function user_coms_no_showcase_page($aid) {
+function user_coms_no_showcase_page() {
   $output .= l('Send E-mail', 'user_coms/no_showcase_email');
   $output .= '<p>';
 	$result = db_query("SELECT * FROM {content_type_uprofile} INNER JOIN {node} ON {content_type_uprofile}.nid = {node}.nid");  
