@@ -579,14 +579,18 @@ function user_coms_get_last_sent($uid) {
 
 function user_coms_user_allows_mail($user_in) {
   print_r($user_in->receive_reminder_mails);
-  if ($user_in->receive_reminder_mails) {
-    if ($user_in->receive_reminder_mails == '0')
-      return FALSE;
-    else if ($user_in->receive_reminder_mails == '1')
-      print_r('TRUE');
-      return TRUE;
-  }
-  return TRUE;
+  if ($user_in->receive_reminder_mails == '')
+    return TRUE;
+  else
+    return FALSE;
+  //if ($user_in->receive_reminder_mails != '') {
+    //if ($user_in->receive_reminder_mails == '0')
+      //return FALSE;
+    //else if ($user_in->receive_reminder_mails == '1')
+      //print_r('TRUE');
+      //return TRUE;
+  //}
+  //return TRUE;
 }
 
 
