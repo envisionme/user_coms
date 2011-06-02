@@ -134,7 +134,7 @@ function user_coms_no_profile_pic_page() {
     if((user_coms_get_last_sent($object->uid) < (time() - (30 * 24 * 60 * 60))) && ($print_user->created < time() - (30 * 24 * 60 * 60)) && user_coms_user_allows_mail($print_user)) {
       //if (user_coms_user_allows_mail($print_user))
         //$output .= 'MAIL';      
-      $output .= theme('username', $print_user).' ('.$print_user->mail.') - '.$print_user->created.'<br />';
+      $output .= theme('username', $print_user).' ('.$print_user->mail.') <br />';
     }
   }
 
