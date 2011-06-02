@@ -584,7 +584,7 @@ function user_coms_user_allows_mail($user_in) {
   else if ($user_in->receive_reminder_mails == 1)
     return TRUE;
   else
-    return FALSE;
+    return TRUE;
 }
 
 
